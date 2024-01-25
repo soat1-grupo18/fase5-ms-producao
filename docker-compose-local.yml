@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:15
+    restart: always
+    container_name: producao_dbhost
+    environment:
+      - POSTGRES_DB=producao_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5436:5432

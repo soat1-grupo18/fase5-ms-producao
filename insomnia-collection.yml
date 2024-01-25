@@ -1,0 +1,95 @@
+_type: export
+__export_format: 4
+__export_date: 2024-01-25T23:03:31.494Z
+__export_source: insomnia.desktop.app:v2023.5.7
+resources:
+  - _id: req_012d7f45e9dc49889270d96508955527
+    parentId: wrk_4c806deddf264da089e45a823ac448b1
+    modified: 1706223668350
+    created: 1688600576551
+    url: http://localhost:8084/pedidos
+    name: /pedidos
+    description: ""
+    method: GET
+    body: {}
+    parameters:
+      - id: pair_7597dbf534fa4b2eb4311c520e4a6552
+        name: status
+        value: RECEBIDO
+        description: ""
+        disabled: false
+      - id: pair_95b33a645a354ea69b427c12b05e32c1
+        name: status
+        value: FINALIZADO
+        description: ""
+        disabled: true
+      - id: pair_d07b8277f1de4beea3a626c24b87a779
+        name: status
+        value: PRONTO
+        description: ""
+        disabled: false
+      - id: pair_df8fdbc453174dfa9aafde84b381669a
+        name: status
+        value: EM_PREPARACAO
+        description: ""
+        disabled: false
+    headers: []
+    authentication: {}
+    metaSortKey: -1687904605352.0469
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_4c806deddf264da089e45a823ac448b1
+    parentId: null
+    modified: 1706223626398
+    created: 1706223615833
+    name: Microsserviço Produção
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_85e3f645e59b484d94c278c6429cde4e
+    parentId: wrk_4c806deddf264da089e45a823ac448b1
+    modified: 1693570731876
+    created: 1693524440706
+    url: http://localhost:8080/pedidos/{% response 'body',
+      'req_96c286558cc84e3b97bba7dea0777669', 'b64::JC5pZA==::46b', 'never', 60
+      %}/FINALIZADO
+    name: /pedidos/{id}/{novoStatus}
+    description: ""
+    method: PUT
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1687904584400.5234
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_540b2f71d8f449319478de468637ac90
+    parentId: wrk_4c806deddf264da089e45a823ac448b1
+    modified: 1693521535538
+    created: 1693521535538
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1693521535539
+    _type: environment
+  - _id: jar_3840d70e956a4f31908d482c634fa219
+    parentId: wrk_4c806deddf264da089e45a823ac448b1
+    modified: 1693521535545
+    created: 1693521535545
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
