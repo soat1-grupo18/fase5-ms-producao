@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ms-producao
+  labels:
+    app: ms-producao
+  annotations:
+    # docs: https://github.com/kubernetes/ingress-nginx/blob/main/docs/examples/rewrite/README.md
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  # ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - pathType: ImplementationSpecific
+        path: /ms-producao(/|$)(.*)
+        backend:
+          service:
+            name: ms-producao
+            port: 
+              number: 80
