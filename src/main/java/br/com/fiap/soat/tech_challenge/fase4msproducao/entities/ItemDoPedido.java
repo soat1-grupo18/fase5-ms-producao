@@ -12,7 +12,8 @@ public class ItemDoPedido {
     private int quantidade;
     private BigDecimal precoUnitario;
 
-    public ItemDoPedido(UUID id, String nome, String descricao, String categoria, String imagem, int quantidade, BigDecimal precoUnitario) {
+    public ItemDoPedido(UUID id, String nome, String descricao, String categoria, String imagem, int quantidade,
+            BigDecimal precoUnitario) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;

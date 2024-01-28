@@ -9,7 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.StatusDoPedido;
 import br.com.fiap.soat.tech_challenge.fase4msproducao.jpa.entities.PedidoJpaEntity;
 
-public interface PedidoRepository extends CrudRepository<PedidoJpaEntity, UUID>{
+public interface PedidoRepository extends CrudRepository<PedidoJpaEntity, UUID> {
     List<PedidoJpaEntity> findByPagamentoId(UUID pagamentoId);
 
     @Query("select p from PedidoJpaEntity p " +

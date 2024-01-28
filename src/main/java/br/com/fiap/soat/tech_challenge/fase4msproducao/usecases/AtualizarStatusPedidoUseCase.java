@@ -12,18 +12,20 @@ import br.com.fiap.soat.tech_challenge.fase4msproducao.interfaces.usecases.Atual
 
 @Component
 public class AtualizarStatusPedidoUseCase implements AtualizarStatusPedidoUseCasePort {
-    
+
     private final PedidoGatewayPort pedidoGateway;
 
     public AtualizarStatusPedidoUseCase(PedidoGatewayPort pedidoGateway) {
         this.pedidoGateway = pedidoGateway;
     }
+
     @Override
     public Pedido execute(UUID pedidoId, StatusDoPedido statusDoPedido) {
         var pedido = pedidoGateway.obterPedido(pedidoId);
 
-        if (! pedido.getStatusDoPedido().podeAtualizarPara(statusDoPedido)) {
-            throw StatusPedidoNaoAtualizadoException.porProximoStatusInvalido(pedido.getStatusDoPedido(), statusDoPedido);
+        if (!pedido.getStatusDoPedido().podeAtualizarPara(statusDoPedido)) {
+            throw StatusPedidoNaoAtualizadoException.porProximoStatusInvalido(pedido.getStatusDoPedido(),
+                    statusDoPedido);
         }
 
         pedido.setStatusDoPedido(statusDoPedido);

@@ -21,7 +21,7 @@ import jakarta.persistence.Table;
 @Table(name = "pedidos")
 public class PedidoJpaEntity {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private UUID clienteId;
     private BigDecimal preco;
@@ -84,15 +84,14 @@ public class PedidoJpaEntity {
 
     public Pedido toDomain() {
         return new Pedido(
-            id,
-            clienteId,
-            preco,
-            statusDoPedido,
-            statusDoPagamento,
-            itens.stream().map(ItemDoPedidoJpaEntity::toDomain).collect(Collectors.toList()),
-            pagamentoId,
-            dataDeCriacao
-        );
+                id,
+                clienteId,
+                preco,
+                statusDoPedido,
+                statusDoPagamento,
+                itens.stream().map(ItemDoPedidoJpaEntity::toDomain).collect(Collectors.toList()),
+                pagamentoId,
+                dataDeCriacao);
     }
 
     public static PedidoJpaEntity fromDomain(Pedido pedido) {

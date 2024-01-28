@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 @Table(name = "itens_do_pedido")
 public class ItemDoPedidoJpaEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String nome;
     private String descricao;
@@ -92,14 +92,13 @@ public class ItemDoPedidoJpaEntity {
 
     public ItemDoPedido toDomain() {
         return new ItemDoPedido(
-            id,
-            nome,
-            descricao,
-            categoria,
-            imagem,
-            quantidade,
-            precoUnitario
-        );
+                id,
+                nome,
+                descricao,
+                categoria,
+                imagem,
+                quantidade,
+                precoUnitario);
     }
 
     public static ItemDoPedidoJpaEntity fromDomain(ItemDoPedido itemDoPedido) {

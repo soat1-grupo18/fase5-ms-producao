@@ -23,7 +23,7 @@ public class PedidoGateway implements PedidoGatewayPort {
     }
 
     private final PedidoRepository pedidoRepository;
- 
+
     @Override
     @Transactional
     public Pedido inserirPedido(Pedido pedido) {

@@ -20,8 +20,8 @@ public class PedidoController {
     private final AtualizarStatusPedidoUseCasePort atualizarStatusPedidoUseCase;
 
     public PedidoController(ObterTodosPedidosUseCasePort obterTodosPedidosUseCase,
-                            ObterPedidosPorStatusUseCasePort obterPedidosPorStatusUseCase,
-                            AtualizarStatusPedidoUseCasePort atualizarStatusPedidoUseCase) {
+            ObterPedidosPorStatusUseCasePort obterPedidosPorStatusUseCase,
+            AtualizarStatusPedidoUseCasePort atualizarStatusPedidoUseCase) {
         this.obterTodosPedidosUseCase = obterTodosPedidosUseCase;
         this.obterPedidosPorStatusUseCase = obterPedidosPorStatusUseCase;
         this.atualizarStatusPedidoUseCase = atualizarStatusPedidoUseCase;

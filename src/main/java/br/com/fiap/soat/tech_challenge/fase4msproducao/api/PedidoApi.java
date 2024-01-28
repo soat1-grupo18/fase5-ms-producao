@@ -15,7 +15,6 @@ import br.com.fiap.soat.tech_challenge.fase4msproducao.controllers.PedidoControl
 import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.StatusDoPedido;
 import br.com.fiap.soat.tech_challenge.fase4msproducao.presenters.PedidoPresenter;
 
-
 @RestController
 public class PedidoApi {
 
@@ -24,10 +23,11 @@ public class PedidoApi {
     public PedidoApi(PedidoController pedidoController) {
         this.pedidoController = pedidoController;
     }
-    
+
     @Operation(summary = "Obter pedidos", description = "Retorna uma lista de pedidos, opcionalmente filtrada por status.")
     @GetMapping("/pedidos")
-    public ResponseEntity<List<PedidoPresenter>> obterPedidos(@RequestParam(name = "status", required = false) StatusDoPedido[] statuses) {
+    public ResponseEntity<List<PedidoPresenter>> obterPedidos(
+            @RequestParam(name = "status", required = false) StatusDoPedido[] statuses) {
         List<PedidoPresenter> pedidos;
 
         if (statuses != null && statuses.length > 0) {
@@ -41,7 +41,8 @@ public class PedidoApi {
 
     @Operation(summary = "Atualizar status do pedido", description = "Altera o status de um pedido identificado pelo seu id.")
     @PutMapping("/pedidos/{pedidoId}/{statusDoPedido}")
-    public ResponseEntity<PedidoPresenter> atualizarStatusPedido(@PathVariable UUID pedidoId, @PathVariable StatusDoPedido statusDoPedido) {
+    public ResponseEntity<PedidoPresenter> atualizarStatusPedido(@PathVariable UUID pedidoId,
+            @PathVariable StatusDoPedido statusDoPedido) {
         return ResponseEntity.ok(pedidoController.atualizarStatusPedido(pedidoId, statusDoPedido));
     }
 }

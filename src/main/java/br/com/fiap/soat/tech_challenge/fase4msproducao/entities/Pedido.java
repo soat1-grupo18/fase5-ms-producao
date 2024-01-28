@@ -1,6 +1,5 @@
 package br.com.fiap.soat.tech_challenge.fase4msproducao.entities;
 
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,13 +22,13 @@ public class Pedido {
     private LocalDateTime dataDeCriacao;
 
     public Pedido(UUID id,
-                  UUID clienteId,
-                  BigDecimal preco,
-                  StatusDoPedido statusDoPedido,
-                  StatusDoPagamento statusDoPagamento,
-                  List<ItemDoPedido> itens,
-                  UUID pagamentoId,
-                  LocalDateTime dataDeCriacao) {
+            UUID clienteId,
+            BigDecimal preco,
+            StatusDoPedido statusDoPedido,
+            StatusDoPagamento statusDoPagamento,
+            List<ItemDoPedido> itens,
+            UUID pagamentoId,
+            LocalDateTime dataDeCriacao) {
         this.id = id;
         this.clienteId = clienteId;
         this.preco = preco;
@@ -43,6 +42,12 @@ public class Pedido {
     public Pedido() {
         this.preco = BigDecimal.ZERO;
         this.itens = new ArrayList<>();
+    }
+
+    public Pedido(UUID randomUUID, StatusDoPedido recebido, Pedido pedido, Pedido pedido2, Pedido pedido3) {
+    }
+
+    public Pedido(UUID randomUUID, StatusDoPedido emPreparacao) {
     }
 
     public void setId(UUID id) {
@@ -73,6 +78,7 @@ public class Pedido {
     public void setStatusDoPedido(StatusDoPedido statusDoPedido) {
         this.statusDoPedido = statusDoPedido;
     }
+
     public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
@@ -84,6 +90,7 @@ public class Pedido {
     public void setItens(List<ItemDoPedido> itens) {
         this.itens = itens;
     }
+
     public List<ItemDoPedido> getItens() {
         return itens;
     }
