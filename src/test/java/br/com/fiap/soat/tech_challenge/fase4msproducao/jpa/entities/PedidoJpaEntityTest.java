@@ -78,18 +78,20 @@ public class PedidoJpaEntityTest {
         itens.add(item2);
 
         UUID id = UUID.randomUUID();
+        UUID pedidoOriginalId = UUID.randomUUID();
         UUID clienteId = UUID.randomUUID();
         BigDecimal preco = BigDecimal.valueOf(30.0);
         StatusDoPedido statusDoPedido = StatusDoPedido.RECEBIDO;
         StatusDoPagamento statusDoPagamento = StatusDoPagamento.PENDENTE;
         UUID pagamentoId = UUID.randomUUID();
         LocalDateTime dataDeCriacao = LocalDateTime.now();
-        Pedido pedido = new Pedido(id, clienteId, preco, statusDoPedido, statusDoPagamento, itens, pagamentoId,
+        Pedido pedido = new Pedido(id, pedidoOriginalId, clienteId, preco, statusDoPedido, statusDoPagamento, itens, pagamentoId,
                 dataDeCriacao);
 
         PedidoJpaEntity result = PedidoJpaEntity.fromDomain(pedido);
 
         assertEquals(id, result.getId());
+        assertEquals(pedidoOriginalId, result.getPedidoOriginalId());
         assertEquals(clienteId, result.getClienteId());
         assertEquals(preco, result.getPreco());
         assertEquals(statusDoPedido, result.getStatusDoPedido());

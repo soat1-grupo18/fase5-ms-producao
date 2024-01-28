@@ -11,6 +11,7 @@ import jakarta.persistence.Enumerated;
 
 public class Pedido {
     private UUID id;
+    private UUID pedidoOriginalId;
     private UUID clienteId;
     private BigDecimal preco;
     @Enumerated(EnumType.STRING)
@@ -22,14 +23,16 @@ public class Pedido {
     private LocalDateTime dataDeCriacao;
 
     public Pedido(UUID id,
-            UUID clienteId,
-            BigDecimal preco,
-            StatusDoPedido statusDoPedido,
-            StatusDoPagamento statusDoPagamento,
-            List<ItemDoPedido> itens,
-            UUID pagamentoId,
-            LocalDateTime dataDeCriacao) {
+                  UUID pedidoOriginalId,
+                  UUID clienteId,
+                  BigDecimal preco,
+                  StatusDoPedido statusDoPedido,
+                  StatusDoPagamento statusDoPagamento,
+                  List<ItemDoPedido> itens,
+                  UUID pagamentoId,
+                  LocalDateTime dataDeCriacao) {
         this.id = id;
+        this.pedidoOriginalId = pedidoOriginalId;
         this.clienteId = clienteId;
         this.preco = preco;
         this.statusDoPedido = statusDoPedido;
@@ -56,6 +59,14 @@ public class Pedido {
 
     public UUID getId() {
         return id;
+    }
+
+    public UUID getPedidoOriginalId() {
+        return pedidoOriginalId;
+    }
+
+    public void setPedidoOriginalId(UUID pedidoOriginalId) {
+        this.pedidoOriginalId = pedidoOriginalId;
     }
 
     public UUID getClienteId() {

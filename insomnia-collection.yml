@@ -1,8 +1,58 @@
 _type: export
 __export_format: 4
-__export_date: 2024-01-25T23:03:31.494Z
+__export_date: 2024-01-28T18:38:01.070Z
 __export_source: insomnia.desktop.app:v2023.5.7
 resources:
+  - _id: req_07bc2e78e17f4759a45dcd97db59712a
+    parentId: wrk_4c806deddf264da089e45a823ac448b1
+    modified: 1706466740356
+    created: 1706465826369
+    url: http://localhost:8084/pedidos
+    name: /pedidos
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"pedidoId": "471749de-6a15-4f8b-82bc-97eea62e40e7",
+        	"clienteId": "30258462-8276-44e2-8893-5a86e43c7a32",
+        	"preco": 33,
+        	"itens": [
+        		{
+        			"nome": "X-Salada",
+            	"descricao": "Sanduiche com salada",
+            	"categoria": "LANCHE",
+            	"imagem": "imagem.jpg",
+            	"quantidade": 3,
+            	"precoUnitario": 11
+        		}
+        	]
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: Insomnia/2023.5.7
+    authentication: {}
+    metaSortKey: -1706465826369
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_4c806deddf264da089e45a823ac448b1
+    parentId: null
+    modified: 1706377675097
+    created: 1706223615833
+    name: ms-producao
+    description: ""
+    scope: collection
+    _type: workspace
   - _id: req_012d7f45e9dc49889270d96508955527
     parentId: wrk_4c806deddf264da089e45a823ac448b1
     modified: 1706223668350
@@ -44,14 +94,6 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: wrk_4c806deddf264da089e45a823ac448b1
-    parentId: null
-    modified: 1706223626398
-    created: 1706223615833
-    name: Microsserviço Produção
-    description: ""
-    scope: collection
-    _type: workspace
   - _id: req_85e3f645e59b484d94c278c6429cde4e
     parentId: wrk_4c806deddf264da089e45a823ac448b1
     modified: 1693570731876

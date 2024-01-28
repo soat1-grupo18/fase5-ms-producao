@@ -17,6 +17,7 @@ public class PedidoTest {
     void construtor_ComParametros_DeveInicializarCorretamente() {
 
         UUID id = UUID.randomUUID();
+        UUID pedidoOriginalId = UUID.randomUUID();
         UUID clienteId = UUID.randomUUID();
         BigDecimal preco = BigDecimal.valueOf(100.0);
         StatusDoPedido statusDoPedido = StatusDoPedido.RECEBIDO;
@@ -25,10 +26,11 @@ public class PedidoTest {
         UUID pagamentoId = UUID.randomUUID();
         LocalDateTime dataDeCriacao = LocalDateTime.now();
 
-        Pedido pedido = new Pedido(id, clienteId, preco, statusDoPedido, statusDoPagamento, itens, pagamentoId,
+        Pedido pedido = new Pedido(id, pedidoOriginalId, clienteId, preco, statusDoPedido, statusDoPagamento, itens, pagamentoId,
                 dataDeCriacao);
 
         assertEquals(id, pedido.getId());
+        assertEquals(pedidoOriginalId, pedido.getPedidoOriginalId());
         assertEquals(clienteId, pedido.getClienteId());
         assertEquals(preco, pedido.getPreco());
         assertEquals(statusDoPedido, pedido.getStatusDoPedido());

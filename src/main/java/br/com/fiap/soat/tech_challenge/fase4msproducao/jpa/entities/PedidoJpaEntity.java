@@ -23,6 +23,7 @@ public class PedidoJpaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+    private UUID pedidoOriginalId;
     private UUID clienteId;
     private BigDecimal preco;
     private StatusDoPedido statusDoPedido;
@@ -84,20 +85,23 @@ public class PedidoJpaEntity {
 
     public Pedido toDomain() {
         return new Pedido(
-                id,
-                clienteId,
-                preco,
-                statusDoPedido,
-                statusDoPagamento,
-                itens.stream().map(ItemDoPedidoJpaEntity::toDomain).collect(Collectors.toList()),
-                pagamentoId,
-                dataDeCriacao);
+            id,
+            pedidoOriginalId,
+            clienteId,
+            preco,
+            statusDoPedido,
+            statusDoPagamento,
+            itens.stream().map(ItemDoPedidoJpaEntity::toDomain).collect(Collectors.toList()),
+            pagamentoId,
+            dataDeCriacao
+        );
     }
 
     public static PedidoJpaEntity fromDomain(Pedido pedido) {
         PedidoJpaEntity pedidoJpaEntity = new PedidoJpaEntity();
 
         pedidoJpaEntity.setId(pedido.getId());
+        pedidoJpaEntity.setPedidoOriginalId(pedido.getPedidoOriginalId());
         pedidoJpaEntity.setClienteId(pedido.getClienteId());
         pedidoJpaEntity.setPreco(pedido.getPreco());
         pedidoJpaEntity.setStatusDoPedido(pedido.getStatusDoPedido());
@@ -129,5 +133,13 @@ public class PedidoJpaEntity {
 
     public void setDataDeCriacao(LocalDateTime dataDeCriacao) {
         this.dataDeCriacao = dataDeCriacao;
+    }
+
+    public UUID getPedidoOriginalId() {
+        return pedidoOriginalId;
+    }
+
+    public void setPedidoOriginalId(UUID pedidoOriginalId) {
+        this.pedidoOriginalId = pedidoOriginalId;
     }
 }
