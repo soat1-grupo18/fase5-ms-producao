@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-producao
+  labels:
+    name: ms-producao
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-producao
+  template:
+    metadata:
+      labels:
+        app: ms-producao
+    spec:
+      containers:
+      - name: ms-producao
+        image: pabloldias/soat1-grupo18-ms-producao:latest
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "384Mi"
+            cpu: "2000m"
+        env:
+        - name: SERVER_PORT
+          value: "8080"
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:postgresql://fiap-ms-producao.cr0dnn5xiohv.us-east-1.rds.amazonaws.com:5432/fiap_ms_producao
+        - name: SPRING_DATASOURCE_USERNAME
+          value: dbuser
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: dbpassword
+        - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+          value: update
+        ports:
+        - containerPort: 8080
