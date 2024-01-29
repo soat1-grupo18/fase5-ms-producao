@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import br.com.fiap.soat.tech_challenge.fase4msproducao.builders.PedidoBuilder;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -22,8 +23,8 @@ public class ObterTodosPedidosUseCaseTest {
 
         PedidoGatewayPort pedidoGatewayMock = Mockito.mock(PedidoGatewayPort.class);
 
-        Pedido pedido1 = new Pedido(UUID.randomUUID(), StatusDoPedido.RECEBIDO);
-        Pedido pedido2 = new Pedido(UUID.randomUUID(), StatusDoPedido.EM_PREPARACAO);
+        Pedido pedido1 = PedidoBuilder.build();
+        Pedido pedido2 = PedidoBuilder.build();
         List<Pedido> pedidosSimulados = Arrays.asList(pedido1, pedido2);
 
         when(pedidoGatewayMock.obterTodosPedidos()).thenReturn(pedidosSimulados);

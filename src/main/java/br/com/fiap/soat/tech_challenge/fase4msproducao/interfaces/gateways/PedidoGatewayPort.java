@@ -10,7 +10,7 @@ import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.StatusDoPedido;
 public interface PedidoGatewayPort {
     Pedido inserirPedido(Pedido pedido);
 
-    Pedido obterPedido(UUID pedidoId);
+    Pedido obterPedido(UUID pedidoOriginalId);
 
     List<Pedido> obterTodosPedidos();
 

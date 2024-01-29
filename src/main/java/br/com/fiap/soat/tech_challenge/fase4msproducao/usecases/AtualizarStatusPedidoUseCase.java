@@ -2,6 +2,7 @@ package br.com.fiap.soat.tech_challenge.fase4msproducao.usecases;
 
 import java.util.UUID;
 
+import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.StatusDoPagamento;
 import org.springframework.stereotype.Component;
 
 import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.Pedido;
@@ -20,8 +21,8 @@ public class AtualizarStatusPedidoUseCase implements AtualizarStatusPedidoUseCas
     }
 
     @Override
-    public Pedido execute(UUID pedidoId, StatusDoPedido statusDoPedido) {
-        var pedido = pedidoGateway.obterPedido(pedidoId);
+    public Pedido execute(UUID pedidoOriginalId, StatusDoPedido statusDoPedido) {
+        var pedido = pedidoGateway.obterPedido(pedidoOriginalId);
 
         if (!pedido.getStatusDoPedido().podeAtualizarPara(statusDoPedido)) {
             throw StatusPedidoNaoAtualizadoException.porProximoStatusInvalido(pedido.getStatusDoPedido(),
@@ -29,6 +30,7 @@ public class AtualizarStatusPedidoUseCase implements AtualizarStatusPedidoUseCas
         }
 
         pedido.setStatusDoPedido(statusDoPedido);
+        pedido.setStatusDoPagamento(StatusDoPagamento.APROVADO);
         pedidoGateway.atualizarPedido(pedido);
         return pedido;
     }

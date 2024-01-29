@@ -6,5 +6,5 @@ import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.Pedido;
 import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.StatusDoPedido;
 
 public interface AtualizarStatusPedidoUseCasePort {
-    Pedido execute(UUID pedidoId, StatusDoPedido statusDoPedido);
+    Pedido execute(UUID pedidoOriginalId, StatusDoPedido statusDoPedido);
 }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import br.com.fiap.soat.tech_challenge.fase4msproducao.builders.PedidoBuilder;
 import org.junit.jupiter.api.Test;
 
 public class PedidoTest {
@@ -41,18 +42,10 @@ public class PedidoTest {
     }
 
     @Test
-    void construtor_SemParametros_DeveInicializarCorretamente() {
-
-        Pedido pedido = new Pedido();
-
-        assertEquals(BigDecimal.ZERO, pedido.getPreco());
-        assertTrue(pedido.getItens().isEmpty());
-    }
-
-    @Test
     void adicionarItem_DeveAdicionarItemCorretamente() {
 
-        Pedido pedido = new Pedido();
+        Pedido pedido = PedidoBuilder.build();
+        pedido.setPreco(BigDecimal.valueOf(0.0));
         ItemDoPedido item = new ItemDoPedido(UUID.randomUUID(), "Produto", "Descrição", "Categoria", "imagem.jpg", 1,
                 BigDecimal.valueOf(10.0));
 
@@ -65,7 +58,7 @@ public class PedidoTest {
     @Test
     void getStatusDoPedido_DeveRetornarStatusCorreto() {
 
-        Pedido pedido = new Pedido();
+        Pedido pedido = PedidoBuilder.build();
         pedido.setStatusDoPedido(StatusDoPedido.RECEBIDO);
 
         assertEquals(StatusDoPedido.RECEBIDO, pedido.getStatusDoPedido());

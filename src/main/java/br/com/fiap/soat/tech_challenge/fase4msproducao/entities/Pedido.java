@@ -42,17 +42,6 @@ public class Pedido {
         this.dataDeCriacao = dataDeCriacao;
     }
 
-    public Pedido() {
-        this.preco = BigDecimal.ZERO;
-        this.itens = new ArrayList<>();
-    }
-
-    public Pedido(UUID randomUUID, StatusDoPedido recebido, Pedido pedido, Pedido pedido2, Pedido pedido3) {
-    }
-
-    public Pedido(UUID randomUUID, StatusDoPedido emPreparacao) {
-    }
-
     public void setId(UUID id) {
         this.id = id;
     }

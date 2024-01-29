@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import br.com.fiap.soat.tech_challenge.fase4msproducao.builders.PedidoBuilder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -40,7 +41,7 @@ public class PedidoGatewayTest {
     @Test
     void aoInserirPedido_DeveRetornarPedidoInserido() {
 
-        Pedido pedido = new Pedido(UUID.randomUUID(), StatusDoPedido.RECEBIDO);
+        Pedido pedido = PedidoBuilder.build();
         pedido.setItens(new ArrayList<>());
         PedidoRepository pedidoRepositoryMock = mock(PedidoRepository.class);
         when(pedidoRepositoryMock.save(any(PedidoJpaEntity.class)))
@@ -57,7 +58,10 @@ public class PedidoGatewayTest {
     void aoObterPedido_DeveRetornarPedidoExistente() {
 
         UUID pedidoId = UUID.randomUUID();
-        Pedido pedido = new Pedido(pedidoId, StatusDoPedido.RECEBIDO);
+        UUID pedidoOriginalId = UUID.randomUUID();
+        Pedido pedido = PedidoBuilder.build();
+        pedido.setId(pedidoId);
+        pedido.setPedidoOriginalId(pedidoOriginalId);
 
         PedidoJpaEntity pedidoJpaEntity = Mockito.mock(PedidoJpaEntity.class);
 
@@ -65,12 +69,12 @@ public class PedidoGatewayTest {
 
         PedidoRepository pedidoRepository = Mockito.mock(PedidoRepository.class);
 
-        when(pedidoRepository.findById(Mockito.eq(pedidoId))).thenReturn(Optional.of(pedidoJpaEntity));
+        when(pedidoRepository.findByPedidoOriginalId(Mockito.eq(pedidoOriginalId))).thenReturn(List.of(pedidoJpaEntity));
 
         PedidoGatewayPort pedidoGateway = new PedidoGateway(pedidoRepository);
-        Pedido resultado = pedidoGateway.obterPedido(pedidoId);
+        Pedido resultado = pedidoGateway.obterPedido(pedidoOriginalId);
 
-        verify(pedidoRepository, times(1)).findById(Mockito.eq(pedidoId));
+        verify(pedidoRepository, times(1)).findByPedidoOriginalId(Mockito.eq(pedidoOriginalId));
         assertNotNull(resultado);
         assertEquals(pedido, resultado);
 
@@ -81,7 +85,7 @@ public class PedidoGatewayTest {
 
         PedidoRepository pedidoRepository = Mockito.mock(PedidoRepository.class);
 
-        when(pedidoRepository.findById(Mockito.any(UUID.class))).thenReturn(Optional.empty());
+        when(pedidoRepository.findByPedidoOriginalId(Mockito.any(UUID.class))).thenReturn(List.of());
 
         PedidoGatewayPort pedidoGateway = new PedidoGateway(pedidoRepository);
 
@@ -89,14 +93,17 @@ public class PedidoGatewayTest {
             pedidoGateway.obterPedido(UUID.randomUUID());
         });
 
-        verify(pedidoRepository, times(1)).findById(Mockito.any(UUID.class));
+        verify(pedidoRepository, times(1)).findByPedidoOriginalId(Mockito.any(UUID.class));
     }
 
     @Test
     void aoObterTodosPedidos_DeveRetornarListaCompletaDePedidos() {
 
         UUID pedidoId = UUID.randomUUID();
-        Pedido pedido = new Pedido(pedidoId, StatusDoPedido.RECEBIDO);
+        UUID pedidoOriginalId = UUID.randomUUID();
+        Pedido pedido = PedidoBuilder.build();
+        pedido.setId(pedidoId);
+        pedido.setPedidoOriginalId(pedidoOriginalId);
 
         PedidoJpaEntity pedidoJpaEntity = Mockito.mock(PedidoJpaEntity.class);
 
@@ -104,13 +111,13 @@ public class PedidoGatewayTest {
 
         PedidoRepository pedidoRepository = Mockito.mock(PedidoRepository.class);
 
-        when(pedidoRepository.findById(Mockito.eq(pedidoId))).thenReturn(Optional.of(pedidoJpaEntity));
+        when(pedidoRepository.findByPedidoOriginalId(Mockito.eq(pedidoOriginalId))).thenReturn(List.of(pedidoJpaEntity));
 
         PedidoGatewayPort pedidoGateway = new PedidoGateway(pedidoRepository);
 
-        Pedido resultado = pedidoGateway.obterPedido(pedidoId);
+        Pedido resultado = pedidoGateway.obterPedido(pedidoOriginalId);
 
-        verify(pedidoRepository, times(1)).findById(Mockito.eq(pedidoId));
+        verify(pedidoRepository, times(1)).findByPedidoOriginalId(Mockito.eq(pedidoOriginalId));
 
         assertNotNull(resultado);
         assertEquals(pedido, resultado);
@@ -139,8 +146,8 @@ public class PedidoGatewayTest {
         when(pedidoRepository.obterPedidosPorStatus(statuses))
                 .thenReturn(Arrays.asList(pedidoJpaEntity1, pedidoJpaEntity2));
 
-        Pedido pedido1 = new Pedido(UUID.randomUUID(), StatusDoPedido.RECEBIDO);
-        Pedido pedido2 = new Pedido(UUID.randomUUID(), StatusDoPedido.EM_PREPARACAO);
+        Pedido pedido1 = PedidoBuilder.build();
+        Pedido pedido2 = PedidoBuilder.build();
         when(pedidoJpaEntity1.toDomain()).thenReturn(pedido1);
         when(pedidoJpaEntity2.toDomain()).thenReturn(pedido2);
 
