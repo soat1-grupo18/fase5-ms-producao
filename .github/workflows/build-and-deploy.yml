@@ -29,4 +29,5 @@ jobs:
       kubernetes-cluster-name: fiap-cluster
       kubernetes-manifest-directory-path: kubernetes
       kubernetes-namespace: ms-producao
+      sonar-project-key: soat1-grupo18_fase4-ms-producao
     secrets: inherit
