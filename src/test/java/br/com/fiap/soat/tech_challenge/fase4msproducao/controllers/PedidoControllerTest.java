@@ -5,10 +5,15 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import br.com.fiap.soat.tech_challenge.fase4msproducao.builders.PedidoBuilder;
+import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.StatusDoPagamento;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -41,8 +46,8 @@ public class PedidoControllerTest {
     @Test
     void aoObterTodosPedidos_DeveRetornarListaDePedidos() {
 
-        Pedido pedido1 = new Pedido(UUID.randomUUID(), StatusDoPedido.RECEBIDO);
-        Pedido pedido2 = new Pedido(UUID.randomUUID(), StatusDoPedido.EM_PREPARACAO);
+        Pedido pedido1 = PedidoBuilder.build();
+        Pedido pedido2 = PedidoBuilder.build();
         List<Pedido> pedidos = Arrays.asList(pedido1, pedido2);
 
         when(obterTodosPedidosUseCase.execute()).thenReturn(pedidos);
@@ -57,8 +62,8 @@ public class PedidoControllerTest {
 
     @Test
     void aoObterPedidosPorStatus_DeveRetornarListaFiltradaPorStatus() {
-        Pedido pedido1 = new Pedido(UUID.randomUUID(), StatusDoPedido.RECEBIDO);
-        Pedido pedido2 = new Pedido(UUID.randomUUID(), StatusDoPedido.RECEBIDO);
+        Pedido pedido1 = PedidoBuilder.build();
+        Pedido pedido2 = PedidoBuilder.build();
         List<Pedido> pedidos = Arrays.asList(pedido1, pedido2);
 
         when(obterPedidosPorStatusUseCase.execute(StatusDoPedido.RECEBIDO)).thenReturn(pedidos);
@@ -74,7 +79,8 @@ public class PedidoControllerTest {
     void aoAtualizarStatusPedido_DeveRetornarPedidoAtualizado() {
 
         UUID pedidoId = UUID.randomUUID();
-        Pedido pedidoAtualizado = new Pedido(pedidoId, StatusDoPedido.EM_PREPARACAO);
+        Pedido pedidoAtualizado = PedidoBuilder.build();
+        pedidoAtualizado.setStatusDoPedido(StatusDoPedido.EM_PREPARACAO);
 
         when(atualizarStatusPedidoUseCase.execute(pedidoId, StatusDoPedido.EM_PREPARACAO)).thenReturn(pedidoAtualizado);
 

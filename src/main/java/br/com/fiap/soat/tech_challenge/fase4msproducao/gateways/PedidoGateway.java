@@ -35,12 +35,12 @@ public class PedidoGateway implements PedidoGatewayPort {
     }
 
     @Override
-    public Pedido obterPedido(UUID pedidoId) {
-        var pedidoO = pedidoRepository.findById(pedidoId);
+    public Pedido obterPedido(UUID pedidoOriginalId) {
+        var pedidoO = pedidoRepository.findByPedidoOriginalId(pedidoOriginalId);
         if (pedidoO.isEmpty()) {
-            throw PedidoNaoEncontradoException.aPartirDoId(pedidoId);
+            throw PedidoNaoEncontradoException.aPartirDoId(pedidoOriginalId);
         }
-        return pedidoO.get().toDomain();
+        return pedidoO.get(0).toDomain();
     }
 
     @Override

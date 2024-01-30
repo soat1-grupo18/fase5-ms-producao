@@ -34,7 +34,7 @@ public class AtualizarStatusPedidoUseCaseTest {
     @Test
     void execute_DeveAtualizarStatusPedido() {
 
-        UUID pedidoId = UUID.randomUUID();
+        UUID pedidoOriginalId = UUID.randomUUID();
         StatusDoPedido statusAtual = StatusDoPedido.RECEBIDO;
         StatusDoPedido novoStatus = StatusDoPedido.EM_PREPARACAO;
 
@@ -42,10 +42,10 @@ public class AtualizarStatusPedidoUseCaseTest {
         when(pedidoMock.getStatusDoPedido()).thenReturn(statusAtual);
 
         PedidoGatewayPort pedidoGatewayMock = Mockito.mock(PedidoGatewayPort.class);
-        when(pedidoGatewayMock.obterPedido(pedidoId)).thenReturn(pedidoMock);
+        when(pedidoGatewayMock.obterPedido(pedidoOriginalId)).thenReturn(pedidoMock);
 
         AtualizarStatusPedidoUseCase atualizarStatusPedidoUseCase = new AtualizarStatusPedidoUseCase(pedidoGatewayMock);
-        Pedido pedidoAtualizado = atualizarStatusPedidoUseCase.execute(pedidoId, novoStatus);
+        Pedido pedidoAtualizado = atualizarStatusPedidoUseCase.execute(pedidoOriginalId, novoStatus);
 
         assertNotNull(novoStatus);
         verify(pedidoGatewayMock).atualizarPedido(pedidoAtualizado);
@@ -54,7 +54,7 @@ public class AtualizarStatusPedidoUseCaseTest {
     @Test
     void execute_ComProximoStatusInvalido_DeveLancarExcecao() {
 
-        UUID pedidoId = UUID.randomUUID();
+        UUID pedidoOriginalId = UUID.randomUUID();
         StatusDoPedido statusAtual = StatusDoPedido.RECEBIDO;
         StatusDoPedido novoStatus = StatusDoPedido.FINALIZADO;
 
@@ -62,11 +62,11 @@ public class AtualizarStatusPedidoUseCaseTest {
         when(pedidoMock.getStatusDoPedido()).thenReturn(statusAtual);
 
         PedidoGatewayPort pedidoGatewayMock = Mockito.mock(PedidoGatewayPort.class);
-        when(pedidoGatewayMock.obterPedido(pedidoId)).thenReturn(pedidoMock);
+        when(pedidoGatewayMock.obterPedido(pedidoOriginalId)).thenReturn(pedidoMock);
 
         AtualizarStatusPedidoUseCase atualizarStatusPedidoUseCase = new AtualizarStatusPedidoUseCase(pedidoGatewayMock);
         assertThrows(StatusPedidoNaoAtualizadoException.class, () -> {
-            atualizarStatusPedidoUseCase.execute(pedidoId, novoStatus);
+            atualizarStatusPedidoUseCase.execute(pedidoOriginalId, novoStatus);
         });
     }
 }

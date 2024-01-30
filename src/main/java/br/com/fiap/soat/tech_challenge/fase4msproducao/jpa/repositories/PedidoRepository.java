@@ -12,6 +12,8 @@ import br.com.fiap.soat.tech_challenge.fase4msproducao.jpa.entities.PedidoJpaEnt
 public interface PedidoRepository extends CrudRepository<PedidoJpaEntity, UUID> {
     List<PedidoJpaEntity> findByPagamentoId(UUID pagamentoId);
 
+    List<PedidoJpaEntity> findByPedidoOriginalId(UUID pedidoOriginalId);
+
     @Query("select p from PedidoJpaEntity p " +
             "where p.statusDoPedido IN :statuses " +
             "order by p.dataDeCriacao asc, p.statusDoPedido desc")

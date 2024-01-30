@@ -42,7 +42,7 @@ public class PedidoApi {
         return ResponseEntity.ok(pedidos);
     }
 
-    @Operation(summary = "Atualizar status do pedido", description = "Altera o status de um pedido identificado pelo seu id.")
+    @Operation(summary = "Atualizar status do pedido", description = "Altera o status de um pedido identificado pelo seu id original.")
     @PutMapping("/pedidos/{pedidoId}/{statusDoPedido}")
     public ResponseEntity<PedidoPresenter> atualizarStatusPedido(@PathVariable UUID pedidoId,
             @PathVariable StatusDoPedido statusDoPedido) {
