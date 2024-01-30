@@ -23,8 +23,8 @@ resource "aws_db_instance" "fiap_ms_producao" {
   instance_class          = "db.t3.micro"
   identifier              = "fiap-ms-producao"
   db_name                 = "fiap_ms_producao"
-  username                = "dbuser"
-  password                = "dbpassword"
+  username                = "dbuser"     # Insecure. It should use IAM authentication OR this should be hidden.
+  password                = "dbpassword" # Insecure. It should use IAM authentication OR this should be hidden.
   parameter_group_name    = "default.postgres15"
   skip_final_snapshot     = true
   backup_retention_period = 0
