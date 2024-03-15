@@ -1,4 +1,4 @@
-package br.com.fiap.soat.tech_challenge.fase4msproducao.gateways;
+package br.com.fiap.soat.tech_challenge.fase4msproducao.jpa.gateways;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import br.com.fiap.soat.tech_challenge.fase4msproducao.builders.PedidoBuilder;
+import br.com.fiap.soat.tech_challenge.fase4msproducao.gateways.PedidoGateway;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
