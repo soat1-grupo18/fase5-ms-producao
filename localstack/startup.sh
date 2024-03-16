@@ -1,13 +1,10 @@
 #!/bin/bash
 
 awslocal sqs create-queue \
-    --queue-name pedidoRecebido \
-    --region us-east-1
+    --queue-name ms-producao-evento-pedido-recebido
 
 awslocal sqs create-queue \
-    --queue-name pagamentoAprovado \
-    --region us-east-1
+    --queue-name ms-producao-evento-pagamento-aprovado
 
 awslocal sqs create-queue \
-    --queue-name pagamentoRecusado \
-    --region us-east-1
+    --queue-name ms-producao-evento-pagamento-recusado

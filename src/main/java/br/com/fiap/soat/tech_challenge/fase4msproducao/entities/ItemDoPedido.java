@@ -1,5 +1,7 @@
 package br.com.fiap.soat.tech_challenge.fase4msproducao.entities;
 
+import br.com.fiap.soat.tech_challenge.fase4msproducao.api.sqs.requests.ItemDoPedidoRecebidoRequest;
+
 import java.math.BigDecimal;
 import java.util.UUID;
 

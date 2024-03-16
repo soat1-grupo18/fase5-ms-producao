@@ -1,9 +1,9 @@
-package br.com.fiap.soat.tech_challenge.fase4msproducao.api;
+package br.com.fiap.soat.tech_challenge.fase4msproducao.api.http;
 
 import java.util.List;
 import java.util.UUID;
 
-import br.com.fiap.soat.tech_challenge.fase4msproducao.api.requests.PedidoEmProducaoRequest;
+import br.com.fiap.soat.tech_challenge.fase4msproducao.api.http.requests.PedidoEmProducaoRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;

@@ -5,25 +5,25 @@ networks:
     external: false
 
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: producao_app
-    restart: always
-    ports:
-      - "8084:8080"
-    depends_on:
-      - db
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://producao_dbhost:5432/producao_db
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postgres
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SERVER_PORT=8080
-
-    networks:
-      - fiap-store
+#  app:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: producao_app
+#    restart: always
+#    ports:
+#      - "8084:8080"
+#    depends_on:
+#      - db
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://producao_dbhost:5432/producao_db
+#      - SPRING_DATASOURCE_USERNAME=postgres
+#      - SPRING_DATASOURCE_PASSWORD=postgres
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+#      - SERVER_PORT=8080
+#
+#    networks:
+#      - fiap-store
 
   db:
     image: postgres:15
@@ -47,7 +47,7 @@ services:
     environment:
       - SERVICES=sqs,iam
       - DEBUG=1
-      - LOCALSTACK_HOST=localstack:4566
+      - LOCALSTACK_HOST=localhost:4566
       - SQS_ENDPOINT_STRATEGY=off
 
     volumes:

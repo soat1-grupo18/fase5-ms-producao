@@ -1,4 +1,4 @@
-package br.com.fiap.soat.tech_challenge.fase4msproducao.api.requests;
+package br.com.fiap.soat.tech_challenge.fase4msproducao.api.http.requests;
 
 import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.Pedido;
 import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.StatusDoPagamento;
