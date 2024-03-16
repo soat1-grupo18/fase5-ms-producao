@@ -27,7 +27,7 @@ public class PedidoRecebidoRequest {
         UUID pagamentoId = null;
         LocalDateTime dataDeCriacao = LocalDateTime.now();
 
-        return new Pedido(pedidoId, null, clienteId, preco, statusDoPedido, statusDoPagamento, itens, pagamentoId, dataDeCriacao);
+        return new Pedido(null, pedidoId, clienteId, preco, statusDoPedido, statusDoPagamento, itens, pagamentoId, dataDeCriacao);
     }
 
     public UUID getPedidoId() {
