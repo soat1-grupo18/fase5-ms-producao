@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.UUID;
 
+import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.StatusDoPagamento;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -45,7 +46,7 @@ public class AtualizarStatusPedidoUseCaseTest {
         when(pedidoGatewayMock.obterPedido(pedidoOriginalId)).thenReturn(pedidoMock);
 
         AtualizarStatusPedidoUseCase atualizarStatusPedidoUseCase = new AtualizarStatusPedidoUseCase(pedidoGatewayMock);
-        Pedido pedidoAtualizado = atualizarStatusPedidoUseCase.execute(pedidoOriginalId, novoStatus);
+        Pedido pedidoAtualizado = atualizarStatusPedidoUseCase.execute(pedidoOriginalId, novoStatus, StatusDoPagamento.APROVADO);
 
         assertNotNull(novoStatus);
         verify(pedidoGatewayMock).atualizarPedido(pedidoAtualizado);
@@ -66,7 +67,7 @@ public class AtualizarStatusPedidoUseCaseTest {
 
         AtualizarStatusPedidoUseCase atualizarStatusPedidoUseCase = new AtualizarStatusPedidoUseCase(pedidoGatewayMock);
         assertThrows(StatusPedidoNaoAtualizadoException.class, () -> {
-            atualizarStatusPedidoUseCase.execute(pedidoOriginalId, novoStatus);
+            atualizarStatusPedidoUseCase.execute(pedidoOriginalId, novoStatus, StatusDoPagamento.APROVADO);
         });
     }
 }

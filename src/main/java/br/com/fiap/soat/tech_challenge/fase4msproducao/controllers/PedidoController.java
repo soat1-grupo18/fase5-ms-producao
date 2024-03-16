@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.StatusDoPagamento;
 import br.com.fiap.soat.tech_challenge.fase4msproducao.interfaces.usecases.CriarPedidoEmProducaoUseCasePort;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,8 +42,8 @@ public class PedidoController {
         return pedidos.stream().map(PedidoPresenter::fromDomain).collect(Collectors.toList());
     }
 
-    public PedidoPresenter atualizarStatusPedido(UUID pedidoId, StatusDoPedido statusDoPedido) {
-        Pedido pedido = atualizarStatusPedidoUseCase.execute(pedidoId, statusDoPedido);
+    public PedidoPresenter atualizarStatusPedido(UUID pedidoId, StatusDoPedido statusDoPedido, StatusDoPagamento statusDoPagamento) {
+        Pedido pedido = atualizarStatusPedidoUseCase.execute(pedidoId, statusDoPedido, statusDoPagamento);
         return PedidoPresenter.fromDomain(pedido);
     }
 

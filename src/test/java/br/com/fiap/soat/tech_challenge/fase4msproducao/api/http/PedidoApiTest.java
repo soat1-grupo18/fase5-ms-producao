@@ -1,12 +1,16 @@
 package br.com.fiap.soat.tech_challenge.fase4msproducao.api.http;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import br.com.fiap.soat.tech_challenge.fase4msproducao.api.http.PedidoApi;
+import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.StatusDoPagamento;
+import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.StatusDoPedido;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -36,8 +40,8 @@ class PedidoApiTest {
 
     @Test
     void atualizarStatusPedidoTest() {
-        when(pedidoController.atualizarStatusPedido(null, null)).thenReturn(null);
-        ResponseEntity<PedidoPresenter> response = pedidoApi.atualizarStatusPedido(null, null);
+        when(pedidoController.atualizarStatusPedido(any(), any(), any())).thenReturn(null);
+        ResponseEntity<PedidoPresenter> response = pedidoApi.atualizarStatusPedido(UUID.randomUUID(), StatusDoPedido.EM_PREPARACAO, StatusDoPagamento.APROVADO);
         assert response.getStatusCode().value() == 200;
     }
 }
