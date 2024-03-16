@@ -18,7 +18,7 @@ public class PedidoRecebidoListener {
         this.criarPedidoEmProducaoUseCasePort = criarPedidoEmProducaoUseCasePort;
     }
 
-    @SqsListener("${queue.name.pedido-recebido}")
+    @SqsListener("${sqs.queues.pedido-recebido}")
     public void obterPedido (PedidoRecebidoRequest pedidoRecebidoRequest) {
         try {
             logger.info("===============PEDIDO RECEBIDO COM SUCESSO===============> {}", pedidoRecebidoRequest);

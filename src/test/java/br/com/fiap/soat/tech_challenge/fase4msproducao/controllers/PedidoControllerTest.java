@@ -82,10 +82,10 @@ public class PedidoControllerTest {
         Pedido pedidoAtualizado = PedidoBuilder.build();
         pedidoAtualizado.setStatusDoPedido(StatusDoPedido.EM_PREPARACAO);
 
-        when(atualizarStatusPedidoUseCase.execute(pedidoId, StatusDoPedido.EM_PREPARACAO)).thenReturn(pedidoAtualizado);
+        when(atualizarStatusPedidoUseCase.execute(pedidoId, StatusDoPedido.EM_PREPARACAO, StatusDoPagamento.APROVADO)).thenReturn(pedidoAtualizado);
 
-        PedidoPresenter resultado = pedidoController.atualizarStatusPedido(pedidoId, StatusDoPedido.EM_PREPARACAO);
+        PedidoPresenter resultado = pedidoController.atualizarStatusPedido(pedidoId, StatusDoPedido.EM_PREPARACAO, StatusDoPagamento.APROVADO);
 
-        verify(atualizarStatusPedidoUseCase, times(1)).execute(pedidoId, StatusDoPedido.EM_PREPARACAO);
+        verify(atualizarStatusPedidoUseCase, times(1)).execute(pedidoId, StatusDoPedido.EM_PREPARACAO, StatusDoPagamento.APROVADO);
     }
 }

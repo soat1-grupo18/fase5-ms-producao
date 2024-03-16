@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import br.com.fiap.soat.tech_challenge.fase4msproducao.api.http.requests.PedidoEmProducaoRequest;
+import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.StatusDoPagamento;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -43,9 +44,10 @@ public class PedidoApi {
     }
 
     @Operation(summary = "Atualizar status do pedido", description = "Altera o status de um pedido identificado pelo seu id original.")
-    @PutMapping("/pedidos/{pedidoId}/{statusDoPedido}")
+    @PutMapping("/pedidos/{pedidoId}/{statusDoPedido}/{statusDoPagamento}")
     public ResponseEntity<PedidoPresenter> atualizarStatusPedido(@PathVariable UUID pedidoId,
-            @PathVariable StatusDoPedido statusDoPedido) {
-        return ResponseEntity.ok(pedidoController.atualizarStatusPedido(pedidoId, statusDoPedido));
+                                                                 @PathVariable StatusDoPedido statusDoPedido,
+                                                                 @PathVariable StatusDoPagamento statusDoPagamento) {
+        return ResponseEntity.ok(pedidoController.atualizarStatusPedido(pedidoId, statusDoPedido, statusDoPagamento));
     }
 }

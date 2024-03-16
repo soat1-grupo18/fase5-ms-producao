@@ -9,13 +9,7 @@ import java.util.stream.Collectors;
 import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.Pedido;
 import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.StatusDoPagamento;
 import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.StatusDoPedido;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "pedidos")
@@ -32,7 +26,7 @@ public class PedidoJpaEntity {
     private UUID pagamentoId;
     private LocalDateTime dataDeCriacao;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ItemDoPedidoJpaEntity> itens;
 
     public UUID getId() {

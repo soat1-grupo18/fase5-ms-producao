@@ -4,7 +4,7 @@ public enum StatusDoPedido {
     RECEBIDO {
         @Override
         public boolean podeAtualizarPara(StatusDoPedido statusDoPedido) {
-            return statusDoPedido.equals(EM_PREPARACAO);
+            return statusDoPedido.equals(EM_PREPARACAO) || statusDoPedido.equals(RECUSADO);
         }
     },
     EM_PREPARACAO {
@@ -20,6 +20,12 @@ public enum StatusDoPedido {
         }
     },
     FINALIZADO {
+        @Override
+        public boolean podeAtualizarPara(StatusDoPedido statusDoPedido) {
+            return false;
+        }
+    },
+    RECUSADO {
         @Override
         public boolean podeAtualizarPara(StatusDoPedido statusDoPedido) {
             return false;

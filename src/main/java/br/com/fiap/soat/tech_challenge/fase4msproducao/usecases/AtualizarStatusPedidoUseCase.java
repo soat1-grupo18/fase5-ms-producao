@@ -21,7 +21,7 @@ public class AtualizarStatusPedidoUseCase implements AtualizarStatusPedidoUseCas
     }
 
     @Override
-    public Pedido execute(UUID pedidoOriginalId, StatusDoPedido statusDoPedido) {
+    public Pedido execute(UUID pedidoOriginalId, StatusDoPedido statusDoPedido, StatusDoPagamento statusDoPagamento) {
         var pedido = pedidoGateway.obterPedido(pedidoOriginalId);
 
         if (!pedido.getStatusDoPedido().podeAtualizarPara(statusDoPedido)) {
@@ -30,7 +30,7 @@ public class AtualizarStatusPedidoUseCase implements AtualizarStatusPedidoUseCas
         }
 
         pedido.setStatusDoPedido(statusDoPedido);
-        pedido.setStatusDoPagamento(StatusDoPagamento.APROVADO);
+        pedido.setStatusDoPagamento(statusDoPagamento);
         pedidoGateway.atualizarPedido(pedido);
         return pedido;
     }
