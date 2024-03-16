@@ -14,7 +14,6 @@ import br.com.fiap.soat.tech_challenge.fase4msproducao.interfaces.usecases.Obter
 import br.com.fiap.soat.tech_challenge.fase4msproducao.interfaces.usecases.ObterTodosPedidosUseCasePort;
 import br.com.fiap.soat.tech_challenge.fase4msproducao.presenters.PedidoPresenter;
 
-
 @RestController
 public class PedidoController {
     private final ObterTodosPedidosUseCasePort obterTodosPedidosUseCase;
