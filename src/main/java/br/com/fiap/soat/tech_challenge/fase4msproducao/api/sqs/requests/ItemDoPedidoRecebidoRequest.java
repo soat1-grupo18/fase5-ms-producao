@@ -1,27 +1,15 @@
-package br.com.fiap.soat.tech_challenge.fase4msproducao.api.requests;
+package br.com.fiap.soat.tech_challenge.fase4msproducao.api.sqs.requests;
 
 import br.com.fiap.soat.tech_challenge.fase4msproducao.entities.ItemDoPedido;
-import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public class ItemDoPedidoEmProducaoRequest {
-    @NotNull
+public class ItemDoPedidoRecebidoRequest {
     private String nome;
-
-    @NotNull
     private String descricao;
-
-    @NotNull
     private String categoria;
-
-    @NotNull
     private String imagem;
-
-    @NotNull
     private int quantidade;
-
-    @NotNull
     private BigDecimal precoUnitario;
 
     public String getNome() {
@@ -72,14 +60,27 @@ public class ItemDoPedidoEmProducaoRequest {
         this.precoUnitario = precoUnitario;
     }
 
-    public ItemDoPedido toDomain() {
+    public static ItemDoPedido toDomain(ItemDoPedidoRecebidoRequest itemDoPedidoRecebidoRequest) {
         return new ItemDoPedido(
                 null,
-                nome,
-                descricao,
-                categoria,
-                imagem,
-                quantidade,
-                precoUnitario);
+                itemDoPedidoRecebidoRequest.getNome(),
+                itemDoPedidoRecebidoRequest.getDescricao(),
+                itemDoPedidoRecebidoRequest.getCategoria(),
+                itemDoPedidoRecebidoRequest.getImagem(),
+                itemDoPedidoRecebidoRequest.getQuantidade(),
+                itemDoPedidoRecebidoRequest.getPrecoUnitario()
+        );
+    }
+
+    @Override
+    public String toString() {
+        return "ItemDoPedidoRecebidoRequest{" +
+                "nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", imagem='" + imagem + '\'' +
+                ", quantidade=" + quantidade +
+                ", precoUnitario=" + precoUnitario +
+                '}';
     }
 }
