@@ -18,7 +18,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.9.3</junit.version>
         <aspectj.version>1.9.19</aspectj.version>
-        <sonar.organization>soat1-grupo18</sonar.organization>
+        <sonar.organization>soat1-grupo18-fase5</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
