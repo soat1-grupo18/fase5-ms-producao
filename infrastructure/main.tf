@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket         = "289389227463-terraform-backend"
-    key            = "github/soat1-grupo18/fase4-ms-producao"
+    key            = "github/soat1-grupo18/fase5-ms-producao"
     dynamodb_table = "289389227463-terraform-backend"
     region         = "sa-east-1"
   }
