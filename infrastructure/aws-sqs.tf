@@ -69,7 +69,7 @@ resource "aws_sqs_queue" "ms_producao_evento_pagamento_aprovado_dlq" {
 }
 
 resource "aws_sns_topic_subscription" "ms_producao_evento_pagamento_aprovado" {
-  topic_arn            = data.aws_sns_topic.ms_pedido.arn
+  topic_arn            = data.aws_sns_topic.ms_pagamento.arn
   protocol             = "sqs"
   endpoint             = aws_sqs_queue.ms_producao_evento_pagamento_aprovado.arn
   raw_message_delivery = true
@@ -113,7 +113,7 @@ resource "aws_sqs_queue" "ms_producao_evento_pagamento_recusado_dlq" {
 }
 
 resource "aws_sns_topic_subscription" "ms_producao_evento_pagamento_recusado" {
-  topic_arn            = data.aws_sns_topic.ms_pedido.arn
+  topic_arn            = data.aws_sns_topic.ms_pagamento.arn
   protocol             = "sqs"
   endpoint             = aws_sqs_queue.ms_producao_evento_pagamento_recusado.arn
   raw_message_delivery = true
