@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: ms-producao
-        image: pabloldias/soat1-grupo18-ms-producao:latest
+        image: olegon/soat1-grupo18-ms-producao:latest
         imagePullPolicy: IfNotPresent
         resources:
           requests:
@@ -29,12 +29,48 @@ spec:
         - name: SERVER_PORT
           value: "8080"
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:postgresql://fiap-ms-producao.cr0dnn5xiohv.us-east-1.rds.amazonaws.com:5432/fiap_ms_producao
+          valueFrom:
+            configMapKeyRef:
+              name: application-config
+              key: spring_data_source_url
         - name: SPRING_DATASOURCE_USERNAME
-          value: dbuser
+          value: dbuser # Bad practice. It should be a secret.
         - name: SPRING_DATASOURCE_PASSWORD
-          value: dbpassword
-        - name: SPRING_JPA_HIBERNATE_DDL_AUTO
-          value: update
+          value: dbpassword # Bad practice. It should be a secret.
+        - name: AWS_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: application-config
+              key: aws_region
+        - name: AWS_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: aws_access_key
+        - name: AWS_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-credentials
+              key: aws_secret_key
+        - name: AWS_SQS_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              name: application-config
+              key: aws_sqs_endpoint
+        - name: QUEUE_PEDIDO_RECEBIDO
+          valueFrom:
+            configMapKeyRef:
+              name: application-config
+              key: aws_sqs_queue_pedido_recebido_arn
+        - name: QUEUE_PAGAMENTO_APROVADO
+          valueFrom:
+            configMapKeyRef:
+              name: application-config
+              key: aws_sqs_queue_pagamento_aprovado_arn
+        - name: QUEUE_PAGAMENTO_RECUSADO
+          valueFrom:
+            configMapKeyRef:
+              name: application-config
+              key: aws_sqs_queue_pagamento_recusado_arn
         ports:
         - containerPort: 8080
